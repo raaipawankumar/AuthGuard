@@ -1,16 +1,10 @@
-using Boilerplate.SSO.Web;
+using Boilerplate.SSO.Web.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 builder.Services.AddRazorPages();
-builder.Services.AddIdentityServer()
-    .AddInMemoryIdentityResources(configuration.GetSection("IdentityServer.IdentityResources"))
-    .AddInMemoryClients(configuration.GetSection("IdentityServer.Clients"))
-    .AddInMemoryApiScopes(configuration.GetSection("IdentityServer.ApiScopes"))
-    .AddInMemoryApiResources(configuration.GetSection("IdentityServer.ApiResources"))
-    .AddTestUsers(IdentityServerSettings.TestUsers)
-    .AddDeveloperSigningCredential();
-
+builder.Services.AddApplicationIdentityServer(configuration);
+builder.Services.AddApplicationAuthentication(configuration);
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
@@ -26,9 +20,9 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-
+app.UseIdentityServer();
 app.MapRazorPages();
 
-app.UseIdentityServer();
+
 
 app.Run();

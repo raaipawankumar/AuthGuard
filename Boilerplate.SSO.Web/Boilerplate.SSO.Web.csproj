@@ -19,4 +19,8 @@
     <ProjectReference Include="..\Common.Identity\Common.Identity.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DBScripts\" />
+  </ItemGroup>
+
 </Project>
