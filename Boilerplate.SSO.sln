@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boilerplate.SSO.Host", "Boilerplate.SSO.Web\Boilerplate.SSO.Host.csproj", "{FDF0111E-3912-4EC4-98D3-3B2116520928}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Identity", "Common.Identity\Common.Identity.csproj", "{8FD38D88-918D-459B-87AA-06A1E6BAD62E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boilerplate.SSO.Api", "Boilerplate.SSO.Api\Boilerplate.SSO.Api.csproj", "{FB40A338-4A2D-44A4-B555-3B99C40C780D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boilerplate.SSO.TestApi", "Boilerplate.SSO.TestApi\Boilerplate.SSO.TestApi.csproj", "{465A95F0-60EE-4566-BD6D-F2D90070147F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boilerplate.SSO.TestApp", "Boilerplate.SSO.TestApp\Boilerplate.SSO.TestApp.csproj", "{09D2F48E-603B-47EC-BA77-E6DED3A55336}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boilerplate.SSO.Host", "Boilerplate.SSO.Host\Boilerplate.SSO.Host.csproj", "{867509EB-E20E-4EFC-9AFE-5C50AC9E0442}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,18 +17,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FDF0111E-3912-4EC4-98D3-3B2116520928}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FDF0111E-3912-4EC4-98D3-3B2116520928}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FDF0111E-3912-4EC4-98D3-3B2116520928}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FDF0111E-3912-4EC4-98D3-3B2116520928}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8FD38D88-918D-459B-87AA-06A1E6BAD62E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8FD38D88-918D-459B-87AA-06A1E6BAD62E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FD38D88-918D-459B-87AA-06A1E6BAD62E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FD38D88-918D-459B-87AA-06A1E6BAD62E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FB40A338-4A2D-44A4-B555-3B99C40C780D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FB40A338-4A2D-44A4-B555-3B99C40C780D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FB40A338-4A2D-44A4-B555-3B99C40C780D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FB40A338-4A2D-44A4-B555-3B99C40C780D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{465A95F0-60EE-4566-BD6D-F2D90070147F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{465A95F0-60EE-4566-BD6D-F2D90070147F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{465A95F0-60EE-4566-BD6D-F2D90070147F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +29,10 @@ Global
 		{09D2F48E-603B-47EC-BA77-E6DED3A55336}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09D2F48E-603B-47EC-BA77-E6DED3A55336}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09D2F48E-603B-47EC-BA77-E6DED3A55336}.Release|Any CPU.Build.0 = Release|Any CPU
+		{867509EB-E20E-4EFC-9AFE-5C50AC9E0442}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{867509EB-E20E-4EFC-9AFE-5C50AC9E0442}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{867509EB-E20E-4EFC-9AFE-5C50AC9E0442}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{867509EB-E20E-4EFC-9AFE-5C50AC9E0442}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

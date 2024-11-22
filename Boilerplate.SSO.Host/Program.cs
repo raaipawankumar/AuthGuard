@@ -19,7 +19,6 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
 app.UseIdentityServer();
 app.MapRazorPages();
 
