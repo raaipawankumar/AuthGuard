@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <Folder Include="DBScripts\" />
+    <Folder Include="Views\Shared\" />
   </ItemGroup>
 
 </Project>

@@ -4,7 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 builder.Services.AddRazorPages();
 builder.Services.AddApplicationIdentityServer(configuration);
-builder.Services.AddApplicationAuthentication(configuration);
+//builder.Services.AddApplicationAuthentication(configuration);
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())

@@ -1,0 +1,6 @@
+@Boilerplate.SSO.TestApi_HostAddress = http://localhost:5178
+
+GET {{Boilerplate.SSO.TestApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

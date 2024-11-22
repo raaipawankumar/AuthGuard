@@ -1,6 +1,10 @@
+using System.Net.Http.Headers;
 using Common.Identity;
+using IdentityServer4.Services;
 using IdentityServer4.Stores;
+using IdentityServer4.Validation;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Boilerplate.SSO.Web.Extensions;
 
@@ -13,15 +17,17 @@ public static class ServiceCollectionExtensions
         {
             throw new ArgumentNullException(nameof(connectionString));
         }
-        services.AddScoped<IClientStore>(provider => new ClientStore(connectionString));
-        services.AddScoped<IResourceStore>(provider => new ResourceStore(connectionString));
+        services.AddTransient<IClientStore>(provider => {
+        var clientStore = new ValidatingClientStore<ClientStore>(new ClientStore(connectionString),
+            provider.GetRequiredService<IClientConfigurationValidator>(),
+            provider.GetRequiredService<IEventService>(),
+            provider.GetRequiredService<ILogger<ValidatingClientStore<ClientStore>>>());
+        return new CachedClientStore(clientStore, new MemoryCache(new MemoryCacheOptions()));
+        });
+        services.AddTransient<IResourceStore>(provider => new ResourceStore(connectionString));
 
         services.AddIdentityServer()
-        .AddClientStore<ClientStore>()
-        .AddResourceStore<ResourceStore>()
-        .AddClientStoreCache<CachedClientStore>()
-        .AddDeveloperSigningCredential();
-
+            .AddDeveloperSigningCredential();
     }
     public static void AddApplicationAuthentication(this IServiceCollection services, IConfiguration configuration)
     {
@@ -30,12 +36,10 @@ public static class ServiceCollectionExtensions
             options.DefaultScheme = IdentityConstants.ApplicationScheme;
             options.DefaultSignInScheme = IdentityConstants.ExternalScheme;
         })
-        .AddCookie(IdentityConstants.ApplicationScheme, options =>
+        .AddCookie("cookie", options =>
         {
-            options.LoginPath = "/Account/Login";
-            options.LogoutPath = "/Account/Logout";
-            options.AccessDeniedPath = "/Account/AccessDenied";
-            options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+           options.Cookie.Name = "ExternalCookie";
+            options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
         })
         .AddOpenIdConnect(IdentityConstants.ExternalScheme, options =>
             {
