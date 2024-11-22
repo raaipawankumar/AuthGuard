@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boilerplate.SSO.TestApp", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boilerplate.SSO.Host", "Boilerplate.SSO.Host\Boilerplate.SSO.Host.csproj", "{867509EB-E20E-4EFC-9AFE-5C50AC9E0442}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boilerplate.SSO.TestIdentityApi", "Boilerplate.SSO.TestIdentityApi\Boilerplate.SSO.TestIdentityApi.csproj", "{508C0BF1-B3F3-47B8-B44D-D316491D8D6F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{867509EB-E20E-4EFC-9AFE-5C50AC9E0442}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{867509EB-E20E-4EFC-9AFE-5C50AC9E0442}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{867509EB-E20E-4EFC-9AFE-5C50AC9E0442}.Release|Any CPU.Build.0 = Release|Any CPU
+		{508C0BF1-B3F3-47B8-B44D-D316491D8D6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{508C0BF1-B3F3-47B8-B44D-D316491D8D6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{508C0BF1-B3F3-47B8-B44D-D316491D8D6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{508C0BF1-B3F3-47B8-B44D-D316491D8D6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

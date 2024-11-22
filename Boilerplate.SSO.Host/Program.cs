@@ -1,3 +1,6 @@
+using System.Diagnostics;
+using System.Security.Cryptography;
+using System.Text;
 using Boilerplate.SSO.Web.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,7 +24,17 @@ app.UseRouting();
 
 app.UseIdentityServer();
 app.MapRazorPages();
-
+GetHash();
+string GetHash(){
+using (var sha256 = SHA256.Create())
+        {
+            var bytes = Encoding.UTF8.GetBytes("secret");
+            var hash = sha256.ComputeHash(bytes);
+            var c = Convert.ToBase64String(hash);
+            Debug.WriteLine(c);
+            return c;
+        }
+}
 
 
 app.Run();

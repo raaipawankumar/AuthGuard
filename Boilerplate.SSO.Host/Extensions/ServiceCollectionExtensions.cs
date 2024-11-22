@@ -1,4 +1,5 @@
 using System.Net.Http.Headers;
+using Boilerplate.SSO.Host;
 using Common.Identity;
 using IdentityServer4.Services;
 using IdentityServer4.Stores;
@@ -25,8 +26,10 @@ public static class ServiceCollectionExtensions
         return new CachedClientStore(clientStore, new MemoryCache(new MemoryCacheOptions()));
         });
         services.AddTransient<IResourceStore>(provider => new ResourceStore(connectionString));
+       
 
         services.AddIdentityServer()
+        .AddSecretValidator<Host.SecretValidator>()
             .AddDeveloperSigningCredential();
     }
     public static void AddApplicationAuthentication(this IServiceCollection services, IConfiguration configuration)
