@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Boilerplate.SSO.Web.Pages;
+namespace Boilerplate.SSO.Host.Pages;
 
 public class IndexModel : PageModel
 {

@@ -1,4 +1,4 @@
-﻿using IdentityServer4.Models;
+﻿//using IdentityServer4.Models;
 
 namespace Boilerplate.SSO.Host.Pages
 {
@@ -10,9 +10,9 @@ namespace Boilerplate.SSO.Host.Pages
 
         public ErrorViewModel(string error)
         {
-            Error = new ErrorMessage { Error = error };
+            Error = error;
         }
 
-        public ErrorMessage Error { get; set; }
+        public string Error { get; set; }
     }
 }

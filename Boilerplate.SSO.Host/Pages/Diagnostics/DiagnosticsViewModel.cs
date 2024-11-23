@@ -1,7 +1,5 @@
-using IdentityModel;
+
 using Microsoft.AspNetCore.Authentication;
-using System.Text;
-using System.Text.Json;
 
 namespace Boilerplate.SSO.Host.Pages.Diagnostics
 {
@@ -13,11 +11,11 @@ namespace Boilerplate.SSO.Host.Pages.Diagnostics
 
             if (result.Properties.Items.ContainsKey("client_list"))
             {
-                var encoded = result.Properties.Items["client_list"];
-                var bytes = Base64Url.Decode(encoded);
-                var value = Encoding.UTF8.GetString(bytes);
+                // var encoded = result.Properties.Items["client_list"];
+                // var bytes = Base64Url.Decode(encoded);
+                // var value = Encoding.UTF8.GetString(bytes);
 
-                Clients = JsonSerializer.Deserialize<string[]>(value);
+                // Clients = JsonSerializer.Deserialize<string[]>(value);
             }
         }
 

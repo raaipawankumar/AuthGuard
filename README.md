@@ -1,8 +1,11 @@
-# Boilerplate.SSO
-## Required Packages
+# Single Sign On (OAuth 2.0 and OpenID Connect)
+
+## DotNet Implementation
+`IdentityServer4` is deprecated due to security issue. It has been replaced with `Duende.IdentityServer` that needs license.
+### Required Packages
+
 ```bash
 dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore
-
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 ```
 
