@@ -16,6 +16,7 @@ namespace Boilerplate.SSO.Host.Pages.Account
 
         public void OnGet()
         {
+            PostLogoutRedirectUri = "~/";
         }
     }
 }

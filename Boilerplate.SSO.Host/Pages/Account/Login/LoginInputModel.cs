@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Boilerplate.SSO.Host.Pages.Account;
+namespace Boilerplate.SSO.Host.Pages.Account.Login;
 
 public class LoginInputModel
 {
@@ -9,5 +9,5 @@ public class LoginInputModel
     [Required]
     public string Password { get; set; } = string.Empty;
     public bool RememberLogin { get; set; } = false;
-    public string ReturnUrl { get; set; } = string.Empty;
+    public string? ReturnUrl { get; set; }
 }

@@ -30,6 +30,23 @@ public class AppBackgroundService(IServiceProvider serviceProvider) : IHostedSer
                 }
             }, cancellationToken);
         }
+        if (await manager.FindByClientIdAsync("postman", cancellationToken) is null)
+        {
+            await manager.CreateAsync(new OpenIddictApplicationDescriptor
+            {
+                ClientId = "postman",
+                ClientSecret = "postman-secret",
+                RedirectUris = { new Uri("https://oauth.pstmn.io/v1/callback") },
+                Permissions =
+                {
+                    Permissions.Endpoints.Authorization,
+                    Permissions.Endpoints.Token,
+                    Permissions.GrantTypes.ClientCredentials,
+                    Permissions.GrantTypes.AuthorizationCode,
+                    Permissions.ResponseTypes.Code
+                }
+            }, cancellationToken);
+        }
     }
 
     public Task StopAsync(CancellationToken cancellationToken)

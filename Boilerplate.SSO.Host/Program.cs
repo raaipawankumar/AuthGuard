@@ -5,6 +5,7 @@ using Boilerplate.SSO.Host.Pages.Account;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddControllers();
 builder.Services.AddRazorPages();
 builder.Services.AddDatabaseContext(builder.Configuration);
 builder.Services.AddIdentityServerDependencies(builder.Configuration);
@@ -26,6 +27,8 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 app.UseRouting();
 //app.UseCors();
+app.UseAuthentication();
+app.MapControllers();
 
 app.MapRazorPages();
 

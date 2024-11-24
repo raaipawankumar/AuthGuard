@@ -1,15 +1,15 @@
 ﻿@page
-@model Boilerplate.SSO.Host.Pages.LogoutModel
+@model Boilerplate.SSO.Host.Pages.Account.Logout.LogoutModel
 <div class="logout-page">
     <div class="lead">
         <h1>Logout</h1>
-        <p>Would you like to logout of IdentityServer?</p>
+        <p>Would you like to logout of Identity Server?</p>
     </div>
 
-    <form asp-action="Logout">
+    <form method="post" >
         <input type="hidden" name="logoutId" value="@Model.LogoutId"  />
         <div class="form-group">
-            <button class="btn btn-primary">Yes</button>
+            <input type="submit" class="btn btn-primary">Yes</button>
         </div>
     </form>
 </div>

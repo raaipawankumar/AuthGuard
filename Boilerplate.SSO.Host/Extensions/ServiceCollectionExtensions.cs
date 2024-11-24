@@ -34,11 +34,31 @@ public static class ServiceCollectionExtensions
             })
             .AddServer(options =>
             {
-                options.SetTokenEndpointUris("/connect/token");
+                // Client credentials flow
                 options.AllowClientCredentialsFlow();
+                options.SetTokenEndpointUris("/connect/token");
+
+                // Authorization code flow
+                options.AllowAuthorizationCodeFlow();
+                options.RequireProofKeyForCodeExchange();
+                options.SetAuthorizationEndpointUris("/connect/authorize");
+                
+                options.SetUserinfoEndpointUris("/connect/userinfo");
+
+                // Common settings
+                options.AddEphemeralEncryptionKey();
+                options.AddEphemeralSigningKey();
+                options.DisableAccessTokenEncryption();
+                options.RegisterScopes("api");
+
                 options.AddDevelopmentEncryptionCertificate();
                 options.AddDevelopmentSigningCertificate();
-                options.UseAspNetCore().EnableTokenEndpointPassthrough();
+
+                options.UseAspNetCore()
+                    .EnableTokenEndpointPassthrough()
+                    .EnableAuthorizationEndpointPassthrough()
+                    .EnableUserinfoEndpointPassthrough()
+                    .DisableTransportSecurityRequirement();
             });
        
     }

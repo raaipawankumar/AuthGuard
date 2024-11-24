@@ -1,5 +1,5 @@
-﻿@page
-@model Boilerplate.SSO.Host.Pages.Account.LoginModel
+﻿@page "Account/Login"
+@model Boilerplate.SSO.Host.Pages.Account.Login.LoginModel
 
 <div class="login-page">
     <div class="lead">
@@ -64,7 +64,7 @@
                             @foreach (var provider in Model.ExternalProviders)
                             {
                                 <li class="list-inline-item">
-                                    <a class="btn btn-secondary" asp-controller="External" asp-action="Challenge"
+                                    <a class="btn btn-secondary" asp-page-handler="Challenge"
                                         asp-route-scheme="@provider.Scheme"
                                         asp-route-returnUrl="@Model.Input.ReturnUrl">
                                         @provider.Name
