@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Boilerplate.SSO.Host.Pages.Account
+namespace AuthGuard.Host.Pages.Account
 {
     public class LoggedOutModel : PageModel
     {

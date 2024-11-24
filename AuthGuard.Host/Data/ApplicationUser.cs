@@ -1,9 +1,9 @@
 using System;
 using Microsoft.AspNetCore.Identity;
 
-namespace Boilerplate.SSO.Host.Data;
+namespace AuthGuard.Host.Data;
 
-public class ApplicationUser:IdentityUser<int>
+public class ApplicationUser : IdentityUser<int>
 {
     public string FirstName { get; set; } = string.Empty;
     public string LastName { get; set; } = string.Empty;
@@ -14,6 +14,6 @@ public class ApplicationUser:IdentityUser<int>
     public string? City { get; set; }
     public string? Country { get; set; }
     public string? PostalCode { get; set; }
-   
+
     public string ClientId { get; set; } = string.Empty;
 }

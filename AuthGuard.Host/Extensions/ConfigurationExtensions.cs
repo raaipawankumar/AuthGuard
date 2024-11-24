@@ -1,6 +1,6 @@
 using Boilerplate.SSO.Host.Pages.Account;
 
-namespace Boilerplate.SSO.Host.Extensions;
+namespace AuthGuard.Host.Extensions;
 
 public static class ConfigurationExtensions
 {
@@ -12,8 +12,8 @@ public static class ConfigurationExtensions
         {
             var providerName = provider["Name"];
             var providerScheme = provider["Scheme"];
-            ArgumentNullException.ThrowIfNullOrWhiteSpace(providerName, nameof(providerName));
-            ArgumentNullException.ThrowIfNullOrWhiteSpace(providerScheme, nameof(providerScheme));
+            ArgumentException.ThrowIfNullOrWhiteSpace(providerName, nameof(providerName));
+            ArgumentException.ThrowIfNullOrWhiteSpace(providerScheme, nameof(providerScheme));
             externalProviders.Add(new ExternalProvider
             {
                 Name = provider["Name"],

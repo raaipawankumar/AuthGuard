@@ -1,6 +1,6 @@
 using System;
 
-namespace Boilerplate.SSO.Host;
+namespace AuthGuard.Host;
 
 public static class AllowedScopes
 {

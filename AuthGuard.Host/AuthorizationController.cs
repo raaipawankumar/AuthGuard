@@ -8,11 +8,11 @@ using OpenIddict.Abstractions;
 using OpenIddict.Server.AspNetCore;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
-namespace Boilerplate.SSO.Host
+namespace AuthGuard.Host
 {
     [ApiController]
     [Route("connect")]
-    public class AuthorizationController( IOpenIddictApplicationManager applicationManager,
+    public class AuthorizationController(IOpenIddictApplicationManager applicationManager,
      IOpenIddictScopeManager scopeManager) : ControllerBase
     {
 
@@ -30,7 +30,7 @@ namespace Boilerplate.SSO.Host
             if (request.IsAuthorizationCodeGrantType())
             {
 
-               return await SignInForAuthorizationCode();
+                return await SignInForAuthorizationCode();
             }
 
             if (request.IsRefreshTokenGrantType())
@@ -42,11 +42,11 @@ namespace Boilerplate.SSO.Host
 
         private async Task<IActionResult> SignInForRefreshToken()
         {
-           var claimPrinciple = (await HttpContext.AuthenticateAsync(
-                OpenIddictServerAspNetCoreDefaults.AuthenticationScheme))
-                .Principal
-                ?? throw new InvalidOperationException("The principal cannot be null.");
-                
+            var claimPrinciple = (await HttpContext.AuthenticateAsync(
+                 OpenIddictServerAspNetCoreDefaults.AuthenticationScheme))
+                 .Principal
+                 ?? throw new InvalidOperationException("The principal cannot be null.");
+
             return SignIn(claimPrinciple, OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
         }
 
@@ -55,11 +55,11 @@ namespace Boilerplate.SSO.Host
             if (string.IsNullOrWhiteSpace(request.ClientId)) throw new InvalidOperationException("The client_id parameter cannot be null or empty.");
             var application = await applicationManager.FindByClientIdAsync(request.ClientId!)
                 ?? throw new InvalidOperationException("The application details cannot be found in the database.");
-            var identity = new ClaimsIdentity( authenticationType:TokenValidationParameters.DefaultAuthenticationType,
+            var identity = new ClaimsIdentity(authenticationType: TokenValidationParameters.DefaultAuthenticationType,
                 nameType: Claims.Name,
                 roleType: Claims.Role);
-            identity.AddClaim(OpenIddictConstants.Claims.Subject, request.ClientId);
-            identity.AddClaim("some-claim", "some-value", OpenIddictConstants.Destinations.AccessToken);
+            identity.AddClaim(Claims.Subject, request.ClientId);
+            identity.AddClaim("some-claim", "some-value", Destinations.AccessToken);
             var claimsPrinciple = new ClaimsPrincipal(identity);
             claimsPrinciple.SetScopes(request.GetScopes());
             return SignIn(claimsPrinciple, OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
@@ -89,13 +89,13 @@ namespace Boilerplate.SSO.Host
             }
             var claims = new List<Claim>
             {
-                new(OpenIddictConstants.Claims.Subject, authResult.Principal.Identity.Name ?? "anonymous"),
-                new Claim(OpenIddictConstants.Claims.Role, "public-user").SetDestinations(OpenIddictConstants.Destinations.AccessToken),
-                new Claim(OpenIddictConstants.Claims.Email, "pawankumarraai@gmail.com").SetDestinations(OpenIddictConstants.Destinations.IdentityToken)
+                new(Claims.Subject, authResult.Principal.Identity.Name ?? "anonymous"),
+                new Claim(Claims.Role, "public-user").SetDestinations(Destinations.AccessToken),
+                new Claim(Claims.Email, "pawankumarraai@gmail.com").SetDestinations(Destinations.IdentityToken)
             };
             var claimsIdentity = new ClaimsIdentity(claims: claims,
              authenticationType: TokenValidationParameters.DefaultAuthenticationType,
-             nameType: Claims.Name, roleType: Claims.Role);  
+             nameType: Claims.Name, roleType: Claims.Role);
 
             var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
             claimsPrincipal.SetScopes(request.GetScopes());

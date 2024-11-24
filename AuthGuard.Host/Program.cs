@@ -1,5 +1,5 @@
-using Boilerplate.SSO.Host;
-using Boilerplate.SSO.Host.Extensions;
+using AuthGuard.Host;
+using AuthGuard.Host.Extensions;
 using Boilerplate.SSO.Host.Pages.Account;
 
 
@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddRazorPages();
+builder.Services.AddIdentityDependencies();
 builder.Services.AddDatabaseContext(builder.Configuration);
 builder.Services.AddIdentityServerDependencies(builder.Configuration);
 builder.Services.AddCookieAuthentication();

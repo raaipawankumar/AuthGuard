@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Boilerplate.SSO.Host.Pages.Account.Login;
+namespace AuthGuard.Host.Pages.Account.Login;
 
 public class LoginInputModel
 {

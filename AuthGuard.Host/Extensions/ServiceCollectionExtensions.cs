@@ -1,11 +1,11 @@
-using Boilerplate.SSO.Host.Data;
+using AuthGuard.Host.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OpenIddict.Server;
 
 
-namespace Boilerplate.SSO.Host.Extensions;
+namespace AuthGuard.Host.Extensions;
 
 public static class ServiceCollectionExtensions
 {

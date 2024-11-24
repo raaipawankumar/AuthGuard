@@ -1,10 +1,10 @@
 using System;
-using Boilerplate.SSO.Host.Data;
+using AuthGuard.Host.Data;
 using Microsoft.AspNetCore.Identity;
 using OpenIddict.Abstractions;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
-namespace Boilerplate.SSO.Host;
+namespace AuthGuard.Host;
 
 public class AppBackgroundService(IServiceProvider serviceProvider) : IHostedService
 {

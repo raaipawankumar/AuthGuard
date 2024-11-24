@@ -1,5 +1,5 @@
 using System.Security.Claims;
-using Boilerplate.SSO.Host.Extensions;
+using AuthGuard.Host.Extensions;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using OpenIddict.Abstractions;
 
-namespace Boilerplate.SSO.Host.Pages.Account.Login
+namespace AuthGuard.Host.Pages.Account.Login
 {
     [AllowAnonymous]
     public class LoginModel(IConfiguration configuration) : PageModel
