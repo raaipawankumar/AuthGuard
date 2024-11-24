@@ -2,12 +2,14 @@ using Boilerplate.SSO.Host.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using OpenIddict.Server;
 
 
 namespace Boilerplate.SSO.Host.Extensions;
 
 public static class ServiceCollectionExtensions
 {
+
     public static void AddDatabaseContext(this IServiceCollection services, IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString("default");
@@ -22,6 +24,12 @@ public static class ServiceCollectionExtensions
         });
 
     }
+    public static void AddIdentityDependencies(this IServiceCollection services)
+    {
+        services.AddIdentity<ApplicationUser, ApplicationRole>()
+            .AddEntityFrameworkStores<IdentityServerDbContext>()
+            .AddDefaultTokenProviders();
+    }
     public static void AddIdentityServerDependencies(this IServiceCollection services,
      IConfiguration configuration)
     {
@@ -34,18 +42,9 @@ public static class ServiceCollectionExtensions
             })
             .AddServer(options =>
             {
-                // Client credentials flow
-                options.AllowClientCredentialsFlow();
-                options.SetTokenEndpointUris("/connect/token");
-
-                // Authorization code flow
-                options.AllowAuthorizationCodeFlow();
-                options.RequireProofKeyForCodeExchange();
-                options.SetAuthorizationEndpointUris("/connect/authorize");
-                
-                options.SetUserinfoEndpointUris("/connect/userinfo");
-
-                // Common settings
+                options.SetFlows();
+                options.SetEndpoints();
+                options.RegisterScopes(AllowedScopes.AllScopes);
                 options.AddEphemeralEncryptionKey();
                 options.AddEphemeralSigningKey();
                 options.DisableAccessTokenEncryption();
@@ -60,7 +59,23 @@ public static class ServiceCollectionExtensions
                     .EnableUserinfoEndpointPassthrough()
                     .DisableTransportSecurityRequirement();
             });
-       
+
+    }
+    private static void SetFlows(this OpenIddictServerBuilder options)
+    {
+        options.AllowClientCredentialsFlow();
+        options.AllowAuthorizationCodeFlow()
+        .RequireProofKeyForCodeExchange();
+        options.AllowRefreshTokenFlow();
+    }
+    private static void SetEndpoints(this OpenIddictServerBuilder options)
+    {
+        options.SetTokenEndpointUris("/connect/token");
+        options.SetAuthorizationEndpointUris("/connect/authorize");
+        options.SetLogoutEndpointUris("/connect/logout");
+        options.SetUserinfoEndpointUris("/connect/userinfo");
+        options.SetIntrospectionEndpointUris("/connect/introspect");
+        options.SetRevocationEndpointUris("/connect/revoke");
     }
     public static void AddCookieAuthentication(this IServiceCollection services)
     {

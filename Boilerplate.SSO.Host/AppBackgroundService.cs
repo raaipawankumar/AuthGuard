@@ -1,5 +1,6 @@
 using System;
 using Boilerplate.SSO.Host.Data;
+using Microsoft.AspNetCore.Identity;
 using OpenIddict.Abstractions;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
@@ -7,7 +8,7 @@ namespace Boilerplate.SSO.Host;
 
 public class AppBackgroundService(IServiceProvider serviceProvider) : IHostedService
 {
-   
+
     public async Task StartAsync(CancellationToken cancellationToken)
     {
         using var scope = serviceProvider.CreateScope();
@@ -15,8 +16,16 @@ public class AppBackgroundService(IServiceProvider serviceProvider) : IHostedSer
         var context = scope.ServiceProvider.GetRequiredService<IdentityServerDbContext>();
         await context.Database.EnsureCreatedAsync(cancellationToken);
 
+        var scopeManager = scope.ServiceProvider.GetRequiredService<IOpenIddictScopeManager>();
         var manager = scope.ServiceProvider.GetRequiredService<IOpenIddictApplicationManager>();
+        await AddClients(manager, cancellationToken);
+        await AddScopes(scopeManager, cancellationToken);
+        var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+        await AddUsers(userManager, cancellationToken);
 
+    }
+    private static async Task AddClients(IOpenIddictApplicationManager manager, CancellationToken cancellationToken)
+    {
         if (await manager.FindByClientIdAsync("service-worker", cancellationToken) is null)
         {
             await manager.CreateAsync(new OpenIddictApplicationDescriptor
@@ -41,16 +50,46 @@ public class AppBackgroundService(IServiceProvider serviceProvider) : IHostedSer
                 {
                     Permissions.Endpoints.Authorization,
                     Permissions.Endpoints.Token,
+                    Permissions.Endpoints.Introspection,
                     Permissions.GrantTypes.ClientCredentials,
                     Permissions.GrantTypes.AuthorizationCode,
-                    Permissions.ResponseTypes.Code
+                    Permissions.ResponseTypes.Code,
+                    Permissions.GrantTypes.RefreshToken,
+
                 }
             }, cancellationToken);
         }
     }
+    private static async Task AddScopes(IOpenIddictScopeManager scopeManager, CancellationToken cancellationToken)
+    {
 
+        OpenIddictScopeDescriptor scopeDescriptor = new OpenIddictScopeDescriptor
+        {
+            Name = "test_scope",
+            Resources = { "test_resource" }
+        };
+
+        var scope = await scopeManager.FindByNameAsync(scopeDescriptor.Name, cancellationToken);
+        if (scope == null)
+        {
+            await scopeManager.CreateAsync(scopeDescriptor, cancellationToken);
+        }
+
+    }
+    private static async Task AddUsers(UserManager<ApplicationUser> userManager, CancellationToken cancellationToken)
+    {
+        if (await userManager.FindByNameAsync("superadmin") is null)
+        {
+            var user = new ApplicationUser
+            {
+                UserName = "superadmin",
+                Email = "pawankumarraai@gmail.com"
+            };
+            await userManager.CreateAsync(user, "superadmin");
+        }
+    }
     public Task StopAsync(CancellationToken cancellationToken)
     {
-       return Task.CompletedTask;
+        return Task.CompletedTask;
     }
 }
