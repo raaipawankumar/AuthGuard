@@ -1,7 +1,8 @@
+using AuthGuard.Host.Pages.Device;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Boilerplate.SSO.Host.Pages.Device
+namespace AuthGuard.Host.Pages.Device
 {
     public class UserCodeConfirmationModel : PageModel
     {

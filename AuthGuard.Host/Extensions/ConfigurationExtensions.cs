@@ -1,4 +1,4 @@
-using Boilerplate.SSO.Host.Pages.Account;
+using AuthGuard.Host.Pages.Account;
 
 namespace AuthGuard.Host.Extensions;
 

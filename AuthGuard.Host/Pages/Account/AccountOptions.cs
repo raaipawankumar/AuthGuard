@@ -1,4 +1,4 @@
-﻿namespace Boilerplate.SSO.Host.Pages.Account;
+﻿namespace AuthGuard.Host.Pages.Account;
 
 public class AccountOptions
 {

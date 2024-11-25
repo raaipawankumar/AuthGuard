@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace AuthGuard.Host.Pages.Account
+namespace AuthGuard.Host.Pages.Account.LoggedOut
 {
-    public class LoggedOutModel : PageModel
+    public class IndexModel : PageModel
     {
         public string PostLogoutRedirectUri { get; set; }
         public string ClientName { get; set; }

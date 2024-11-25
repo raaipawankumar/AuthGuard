@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Boilerplate.SSO.Host.Pages;
+namespace AuthGuard.Host.Pages;
 
 public class PrivacyModel : PageModel
 {

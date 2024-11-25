@@ -1,7 +1,6 @@
 using AuthGuard.Host;
 using AuthGuard.Host.Extensions;
-using Boilerplate.SSO.Host.Pages.Account;
-
+using AuthGuard.Host.Pages.Account;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,16 +20,14 @@ if (!app.Environment.IsDevelopment())
 {
     
     app.UseExceptionHandler("/Error");
-    // app.UseHsts();
 }
 
-//app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-//app.UseCors();
 app.UseAuthentication();
-app.MapControllers();
+app.UseRouting();
 
+app.MapControllers();
 app.MapRazorPages();
 
 

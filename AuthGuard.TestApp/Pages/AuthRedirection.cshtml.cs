@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace AuthGuard.Host.Pages.Device
+namespace AuthGuard.TestApp
 {
-    public class SuccessModel : PageModel
+    public class AuthRedirectionModel : PageModel
     {
         public void OnGet()
         {

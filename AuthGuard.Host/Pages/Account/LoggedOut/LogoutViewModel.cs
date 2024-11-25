@@ -1,4 +1,4 @@
-using Boilerplate.SSO.Host.Pages.Account;
+using AuthGuard.Host.Pages.Account.Logout;
 
 namespace AuthGuard.Host.Pages.Account.LoggedOut
 {

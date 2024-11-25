@@ -1,5 +1,4 @@
-
-namespace Boilerplate.SSO.Host.Pages.Consent
+namespace AuthGuard.Host.Pages.Consent
 {
     public class ProcessConsentResult
     {

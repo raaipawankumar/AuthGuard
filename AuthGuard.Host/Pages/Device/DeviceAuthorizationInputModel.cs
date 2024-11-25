@@ -1,6 +1,6 @@
-using Boilerplate.SSO.Host.Pages.Consent;
+using AuthGuard.Host.Pages.Consent;
 
-namespace Boilerplate.SSO.Host.Pages.Device;
+namespace AuthGuard.Host.Pages.Device;
 
 public class DeviceAuthorizationInputModel : ConsentInputModel
 {

@@ -1,4 +1,4 @@
-﻿namespace Boilerplate.SSO.Host.Pages;
+﻿namespace AuthGuard.Host.Pages;
 
 public class ScopeViewModel
 {

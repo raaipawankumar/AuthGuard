@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Boilerplate.SSO.Host.Pages.Account.Logout
 {
-    public class LogoutModel : PageModel
+    public class IndexModel : PageModel
     {
         [BindProperty]
         public string LogoutId { get; set; } = string.Empty;

@@ -4,6 +4,7 @@ using AuthGuard.Host.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AuthGuard.Host.Migrations
 {
     [DbContext(typeof(IdentityServerDbContext))]
-    partial class IdentityServerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241125065249_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -455,9 +458,6 @@ namespace AuthGuard.Host.Migrations
 
                     b.Property<string>("DefaultPageUrl")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsSuperAdmin")
-                        .HasColumnType("bit");
 
                     b.HasDiscriminator().HasValue("ApplicationRole");
                 });

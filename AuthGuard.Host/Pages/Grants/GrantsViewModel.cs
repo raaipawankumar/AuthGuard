@@ -1,4 +1,4 @@
-﻿namespace Boilerplate.SSO.Host.Pages.Grants;
+﻿namespace AuthGuard.Host.Pages.Grants;
 
 public class GrantsViewModel
 {

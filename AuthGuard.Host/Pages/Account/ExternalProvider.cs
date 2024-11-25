@@ -1,7 +1,7 @@
-﻿namespace Boilerplate.SSO.Host.Pages.Account;
+﻿namespace AuthGuard.Host.Pages.Account;
 
 public class ExternalProvider
 {
-    public string Name { get; set; } 
+    public string Name { get; set; }
     public string Scheme { get; set; }
 }

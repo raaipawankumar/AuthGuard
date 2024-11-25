@@ -5,7 +5,7 @@ using OpenIddict.Abstractions;
 
 namespace Boilerplate.SSO.Host.Pages.Clients
 {
-    public class ClientModel(IOpenIddictApplicationManager manager) : PageModel
+    public class IndexModel(IOpenIddictApplicationManager manager) : PageModel
     {
 
         [BindProperty]

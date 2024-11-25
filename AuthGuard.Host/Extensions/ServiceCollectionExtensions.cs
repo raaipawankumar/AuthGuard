@@ -48,8 +48,7 @@ public static class ServiceCollectionExtensions
                 options.AddEphemeralEncryptionKey();
                 options.AddEphemeralSigningKey();
                 options.DisableAccessTokenEncryption();
-                options.RegisterScopes("api");
-
+                
                 options.AddDevelopmentEncryptionCertificate();
                 options.AddDevelopmentSigningCertificate();
 
@@ -57,6 +56,7 @@ public static class ServiceCollectionExtensions
                     .EnableTokenEndpointPassthrough()
                     .EnableAuthorizationEndpointPassthrough()
                     .EnableUserinfoEndpointPassthrough()
+                    .EnableLogoutEndpointPassthrough()
                     .DisableTransportSecurityRequirement();
             });
 

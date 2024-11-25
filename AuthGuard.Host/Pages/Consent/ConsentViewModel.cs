@@ -1,4 +1,6 @@
-﻿namespace Boilerplate.SSO.Host.Pages.Consent
+﻿using Boilerplate.SSO.Host.Pages;
+
+namespace AuthGuard.Host.Pages.Consent
 {
     public class ConsentViewModel : ConsentInputModel
     {
