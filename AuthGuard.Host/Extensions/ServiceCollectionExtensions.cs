@@ -1,3 +1,4 @@
+using AuthGuard.Application;
 using AuthGuard.Host.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;

@@ -1,7 +1,7 @@
 using System;
 using Microsoft.AspNetCore.Identity;
 
-namespace AuthGuard.Host.Data;
+namespace AuthGuard.Application;
 
 public class ApplicationUser : IdentityUser
 {

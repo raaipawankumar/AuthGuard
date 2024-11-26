@@ -1,11 +1,10 @@
-using System;
-using Microsoft.Extensions.Primitives;
+using Microsoft.AspNetCore.Http;
 
-namespace AuthGuard.Host.Extensions;
+namespace AuthGuard.Application;
 
 public static class RedirectUris
 {
-    public static string BuildForChallenge(HttpRequest request, List<string> excluding = null)
+    public static string BuildForChallenge(HttpRequest request, List<string>? excluding = null)
     {
         excluding ??= [];
 

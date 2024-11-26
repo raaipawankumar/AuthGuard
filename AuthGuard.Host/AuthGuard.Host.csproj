@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AuthGuard.Application\AuthGuard.Application.csproj" />
     <ProjectReference Include="..\Common.Identity\Common.Identity.csproj" />
   </ItemGroup>
 

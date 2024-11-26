@@ -1,3 +1,4 @@
+using AuthGuard.Application;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
