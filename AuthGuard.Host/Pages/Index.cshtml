@@ -3,43 +3,17 @@
 @using Microsoft.AspNetCore.Authentication;
 @using System.Diagnostics
 @{
-    var version = 1.0;
-    var isAuthenticated = User?.Identity?.IsAuthenticated ?? false;
-    //FileVersionInfo.GetVersionInfo(typeof(IdentityServer4.Hosting.IdentityServerMiddleware).Assembly.Location).ProductVersion.Split('+').First();
+   var isAuthenticated = User?.Identity?.IsAuthenticated ?? false;
 }
 
 <div class="welcome-page">
-    <h1>
-        <img src="~/icon.jpg">
-        Welcome to Identity Server
-        <small class="text-muted">(version @version)</small>
-    </h1>
-
-    <ul>
-        <li>
-            IdentityServer publishes a
-            <a href="~/.well-known/openid-configuration">discovery document</a>
-            where you can find metadata and links to all the endpoints, key material, etc.
-        </li>
-
-    </ul>
-     @if (isAuthenticated)
-    {
-        
-        <div>
-            <p>You are signed in as</p>
-            <h2>@User.Identity.Name</h2>
-            <hr />
+    <div class="text-center">
+        <h1>
+          <img src="~/icon.jpg"> AuthGuard 
+        </h1>
+    </div>
+       <div class="text-center">
+          <small class="text-muted">Powered by OpenIDDict</small>
+    </div>
   
-            <p><a class="btn btn-dark" asp-page="/Account/Logout/Index">Sign out</a></p>
-        </div>
-    }
-
-    @if (!isAuthenticated)
-    {
-        <div>
-            <p>You are not signed in</p>
-            <p><a class="btn btn-sm btn-dark" asp-page="/Account/Login/Index" >Sign in</a></p>
-        </div>
-    }
 </div>

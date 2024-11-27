@@ -1,6 +1,5 @@
 using System;
 using AuthGuard.Application;
-using AuthGuard.Host.Data;
 using Microsoft.AspNetCore.Identity;
 using OpenIddict.Abstractions;
 using static OpenIddict.Abstractions.OpenIddictConstants;

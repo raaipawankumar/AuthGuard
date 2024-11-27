@@ -42,6 +42,7 @@ namespace AuthGuard.Host
                     CookieAuthenticationDefaults.AuthenticationScheme
                 );
             }
+            
             var principal = await ClaimsPrincipleFactory.CreateForAuthenticatedUser(authResult, request, scopeManager);
             return SignIn(principal, OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
         }

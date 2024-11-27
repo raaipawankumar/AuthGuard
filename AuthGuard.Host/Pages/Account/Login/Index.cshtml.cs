@@ -9,11 +9,11 @@ namespace AuthGuard.Host.Pages.Account.Login
 {
     [AllowAnonymous]
     public class IndexModel(UserManager<ApplicationUser> userManager,
-     IConfiguration configuration) : PageModel
+      IConfiguration configuration) : PageModel
     {
         [BindProperty]
         public LoginInputModel Input { get; set; } = new ();
-        public bool AllowRememberLogin { get; set; } = true;
+       
         public bool EnableLocalLogin { get; set; } = true;
 
         public IEnumerable<ExternalProvider> ExternalProviders => configuration.GetExternalProviders();
@@ -27,11 +27,15 @@ namespace AuthGuard.Host.Pages.Account.Login
         }
         public async Task<IActionResult> OnPostAsync()
         {
+            
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            var result = await UserAuthentication.SignIn(HttpContext, userManager, Input.Username, Input.Password);
+            var result = await UserAuthentication.SignIn(HttpContext,
+                userManager, Input.Username,
+                Input.Password, Input.RememberLogin);
+
             if (!result.IsOk)
             {
                 ModelState.AddModelError(string.Empty, "Invalid username or password.");
@@ -39,13 +43,13 @@ namespace AuthGuard.Host.Pages.Account.Login
             }
             return RedirectUser(Input.ReturnUrl);
         }
-        private RedirectResult RedirectUser(string? returnUrl)
+        private IActionResult RedirectUser(string? returnUrl)
         {
-            if (string.IsNullOrWhiteSpace(returnUrl))
+            returnUrl ??= Url.Content("~/LoginDetail");
+            if( Url.IsLocalUrl(returnUrl))
             {
-                return Redirect("~/");
+                return LocalRedirect(returnUrl);
             }
-
             return Redirect(returnUrl);
         }
         public IActionResult OnPostCancel()

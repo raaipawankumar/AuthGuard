@@ -1,15 +1,28 @@
 ﻿@page
-@model Boilerplate.SSO.Host.Pages.Account.Logout.IndexModel
+@model AuthGuard.Host.Pages.Account.Logout.IndexModel
+@{
+    var isAuthenticated = User?.Identity?.IsAuthenticated ?? false;
+    ViewData["Title"] = "Logout";
+}
 <div class="logout-page">
     <div class="lead">
         <h1>Logout</h1>
-        <p>Would you like to logout of Identity Server?</p>
+        @if (isAuthenticated)
+        {
+            <p>Hi @Model.FullName Would you like to logout ?</p>
+            <form method="post">
+                <input type="hidden" name="logoutId" value="@Model.LogoutId" />
+                <div class="form-group">
+                    <input type="submit" value="Yes" class="btn btn-primary" />
+                </div>
+            </form>
+        }
+        else
+        {
+            <p>You have loggedout successfully.</p>
+        }
+
     </div>
 
-    <form method="post" >
-        <input type="hidden" name="logoutId" value="@Model.LogoutId"  />
-        <div class="form-group">
-            <input type="submit" class="btn btn-primary">Yes</button>
-        </div>
-    </form>
+
 </div>
